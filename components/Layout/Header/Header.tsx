@@ -11,6 +11,7 @@ import BoardForm from '../../Modals/BoardForm';
 import { mutate } from 'swr';
 import { LinkContainer, PopoverLink } from '../../Popover/Popover';
 import { signOut, useSession } from 'next-auth/react';
+import Image from "next/image";
 
 const Header: FC = () => {
     const [isMobile, setIsMobile] = useState(false);
@@ -151,10 +152,12 @@ const Header: FC = () => {
                         </PopoverLink>
                         <div className="relative mb-4 mt-8 h-px w-full bg-mid-grey">
                             {session.data?.user?.image && (
-                                <img
+                                <Image
                                     src={session.data?.user?.image}
+                                    width={8}
+                                    height={8}
                                     className="absolute left-1/2 top-1/2 w-8 -translate-y-1/2 -translate-x-1/2 rounded-full bg-white p-1 dark:bg-v-dark-grey"
-                                />
+                                 alt='User Avatar'/>
                             )}
                         </div>
                         <PopoverLink id="logout" onClick={() => signOut()}>

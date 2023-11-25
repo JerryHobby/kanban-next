@@ -6,6 +6,7 @@ import { signIn, getSession, GetSessionParams } from 'next-auth/react';
 import { Input } from '../../components/Inputs/Inputs';
 import { ButtonPrimary } from '../../components/Buttons/Buttons';
 import useInput from '../../hooks/useInput';
+import Image from 'next/image';
 
 const ProviderButton: FC<PropsWithChildren<{ provider: string; className?: string; icon?: string }>> = (props) => {
     return (
@@ -15,7 +16,7 @@ const ProviderButton: FC<PropsWithChildren<{ provider: string; className?: strin
                 props.className ?? ''
             }`}
         >
-            {props.icon && <img src={props.icon} alt={`${props.provider} icon`} className="h-6 w-6" />}
+            {props.icon && <Image src={props.icon} alt={`${props.provider} icon`} width={6} height={6} className="h-6 w-6" />}
             <span className="flex-grow">{props.children}</span>
         </button>
     );
@@ -72,13 +73,13 @@ export default function Home() {
                             <ButtonPrimary className="mt-4">Sign in with email</ButtonPrimary>
                         </form>
                         <div className="mt-6 mb-2 h-px w-full bg-mid-grey" />
-                        <ProviderButton
-                            className="border border-mid-grey bg-black text-white dark:border-none"
-                            provider="github"
-                            icon="https://authjs.dev/img/providers/github-dark.svg"
-                        >
-                            Sign in with GitHub
-                        </ProviderButton>
+                        {/*<ProviderButton*/}
+                        {/*    className="border border-mid-grey bg-black text-white dark:border-none"*/}
+                        {/*    provider="github"*/}
+                        {/*    icon="https://authjs.dev/img/providers/github-dark.svg"*/}
+                        {/*>*/}
+                        {/*    Sign in with GitHub*/}
+                        {/*</ProviderButton>*/}
 
                         <ProviderButton
                             className="border border-mid-grey bg-white text-black dark:border-none"

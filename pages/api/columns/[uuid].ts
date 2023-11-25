@@ -2,8 +2,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { prisma } from '../../../utils/db';
 import { validate } from 'uuid';
-import { getSession } from 'next-auth/react';
-import { Session } from 'next-auth';
+import {getServerSession, Session} from 'next-auth';
+import authOptions from "../../../auth/authOptions";
 
 type UpdatedColumnData = {
     name?: string;
@@ -40,7 +40,8 @@ const incrementFromPosition = (boardUUID: string, position: number) => {
 };
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    const session = await getSession({ req });
+    const session = await getServerSession(req, res, authOptions)
+
     if (!session) {
         return res.status(401).end('Unauthorized');
     }

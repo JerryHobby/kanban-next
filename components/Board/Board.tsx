@@ -31,6 +31,7 @@ const NewColumnBar: FC<{
     const inputRef = useRef<HTMLInputElement>(null);
     const { mutateBoards } = useBoardsContext();
     const inputHandler = useInput<string>({ validateFn: validateColumn });
+    //const inputHandler = useInput<string>();
 
     const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -122,7 +123,7 @@ const Board: FC<{ boardUUID: string }> = (props) => {
             };
         }
         setItems(newValue);
-    }, [boardData.data?.columns, boardData.error]);
+    }, [boardData.data, boardData.data?.columns, boardData.error]);
 
     const mouseSensor = useSensor(MouseSensor, {
         // Require the mouse to move by 10 pixels before activating

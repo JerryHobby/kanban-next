@@ -160,7 +160,7 @@ const TaskDetails: FC<{ taskUUID: string; columns: Column[]; closeModal: Functio
     useEffect(() => {
         const col = columns.find((col) => col.uuid === taskData?.column_uuid);
         if (col) columnDropdown.setValue(col.name);
-    }, [taskData?.column_uuid]);
+    }, [columnDropdown, columns, taskData?.column_uuid]);
 
     return (
         <div data-testid="task-details" className={deleteTaskModal.isOpen || editTaskModal.isOpen ? 'hidden' : ''}>

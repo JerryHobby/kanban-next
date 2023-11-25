@@ -5,11 +5,13 @@ import { validate } from 'uuid';
 import { Column } from '../../../types';
 import { v4 as uuidv4 } from 'uuid';
 import { getSession } from 'next-auth/react';
-import { Session } from 'next-auth';
+import {getServerSession, Session} from 'next-auth';
 import { randomHexColor } from '../../../utils/utils';
+import authOptions from "../../../auth/authOptions";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    const session = await getSession({ req });
+    const session = await getServerSession(req, res, authOptions)
+
     if (!session) {
         return res.status(401).end('Unauthorized');
     }

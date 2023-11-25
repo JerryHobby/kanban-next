@@ -18,14 +18,14 @@ export default function BoardPage() {
         if (selectedTask) {
             taskDetailsModal.open();
         }
-    }, [selectedTask]);
+    }, [taskDetailsModal, selectedTask, taskDetailsModal.isOpen]);
 
     useEffect(() => {
         if (selectedBoard && !taskDetailsModal.isOpen) {
             setSelectedTask(null);
             mutate(`/api/boards/${selectedBoard.uuid}`);
         }
-    }, [taskDetailsModal.isOpen]);
+    }, [taskDetailsModal.isOpen, selectedBoard, setSelectedTask]);
 
     return (
         <Layout>

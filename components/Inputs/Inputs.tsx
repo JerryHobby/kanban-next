@@ -203,6 +203,8 @@ const Dropdown: FC<
                             {props.options.map((option) => (
                                 <li
                                     role={'option'}
+                                    aria-selected={option === value}
+
                                     key={option}
                                     onClick={handleOptionSelect}
                                     onKeyDown={handleOptionKeyDown}

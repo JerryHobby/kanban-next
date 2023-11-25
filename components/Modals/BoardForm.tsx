@@ -83,6 +83,7 @@ const BoardForm: FC<{
                     headers: {
                         'Content-Type': 'application/json',
                     },
+
                     body: JSON.stringify({
                         name: nameInput.value,
                         columns: columns,
@@ -140,7 +141,7 @@ const BoardForm: FC<{
                 <h2 className="mb-6 text-lg font-bold dark:text-white">
                     {props.formType === 'new' ? 'Add New Board' : 'Edit Board'}
                 </h2>
-                <form ref={formRef} onSubmit={handleSubmit} action="submit" className="flex flex-col">
+                <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col">
                     <Input
                         value={nameInput.value ?? ''}
                         onChange={nameInput.valueChangeHandler}

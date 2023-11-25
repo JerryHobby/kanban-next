@@ -2,8 +2,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { prisma } from '../../../utils/db';
 import { v4 as uuidv4 } from 'uuid';
-import { getSession } from 'next-auth/react';
-import { Session } from 'next-auth';
+import {getServerSession, Session} from 'next-auth';
+import authOptions from "../../../auth/authOptions";
 
 type Board = {
     name: string;
@@ -20,7 +20,8 @@ type Column = {
 };
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    const session = await getSession({ req });
+    const session = await getServerSession(req, res, authOptions)
+
     if (!session) {
         return res.status(401).end('Unauthorized');
     }
